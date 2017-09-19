@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="350.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXTextField alignment="CENTER" labelFloat="true" layoutX="75.0" layoutY="30.0" prefHeight="25.0" prefWidth="410.0" promptText="Key Word">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField alignment="CENTER" labelFloat="true" layoutX="75.0" layoutY="95.0" prefHeight="25.0" prefWidth="410.0" promptText="Username">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField alignment="CENTER" labelFloat="true" layoutX="75.0" layoutY="160.0" prefHeight="25.0" prefWidth="410.0" promptText="Password">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField alignment="CENTER" labelFloat="true" layoutX="75.0" layoutY="225.0" prefHeight="25.0" prefWidth="410.0" promptText="Web Address">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton buttonType="RAISED" layoutX="156.0" layoutY="278.0" prefHeight="30.0" prefWidth="239.0" ripplerFill="#862020" style="-fx-background-color: #0bdd97;" text="Add To Book">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
