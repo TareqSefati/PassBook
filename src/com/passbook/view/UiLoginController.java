@@ -48,9 +48,8 @@ public class UiLoginController {
 
   //Action Event for Register New User Link clicked in login window
     @FXML
-    void registerNewUser(ActionEvent event, LoginController lc) throws IOException {
-    	lc = this.loginController;
-    	loginController.registerUser(event, lc);
+    void registerNewUser(ActionEvent event) throws IOException {
+    	loginController.registerUser(event);
     }
 
 

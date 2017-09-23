@@ -115,14 +115,13 @@ public class UserService {
 		}
 	}
 
-	public void registerUser(ActionEvent event, LoginController lc) throws IOException {
-		lc.dataConnectionClose();
+	public void registerUser(ActionEvent event) throws IOException {
 		Stage primaryStage = new Stage();
 		((Node) event.getSource()).getScene().getWindow().hide();
 		FXMLLoader loader = new FXMLLoader();
 		
 		Parent root = loader.load(getClass().getResource("/com/passbook/view/UiRegister.fxml").openStream());
-		loader.setController(new UiRegisterController(lc, primaryStage));
+		//loader.setController(new UiRegisterController(primaryStage));
 		
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);

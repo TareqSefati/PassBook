@@ -28,7 +28,7 @@ public class LoginController {
 		userService.addUser(username, password, email);
 	}
 
-	public void registerUser(ActionEvent event, LoginController lc) throws IOException {
-		userService.registerUser(event, lc);
+	public void registerUser(ActionEvent event) throws IOException {
+		userService.registerUser(event);
 	}
 }
