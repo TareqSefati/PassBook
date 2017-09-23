@@ -19,27 +19,35 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	private IUserDao makeUserkDao() {
-		return new UserDao();
-	}
-
-	private UserService makeUserService() {
-		return new UserService(makeUserkDao());
-	}
-
-	private LoginController makeLoginController() {
-		return new LoginController(makeUserService());
-	}
-
-	private UiLoginController makeUiLoginController(Stage stage) {
-		return new UiLoginController(makeLoginController(), stage);
+//	private IUserDao makeUserkDao() {
+//		return new UserDao();
+//	}
+//
+//	private UserService makeUserService() {
+//		return new UserService(makeUserkDao());
+//	}
+//
+//	private LoginController makeLoginController() {
+//		return new LoginController(makeUserService());
+//	}
+//
+//	private UiLoginController makeUiLoginController(Stage stage) {
+//		return new UiLoginController(makeLoginController(), stage);
+//	}
+	
+	private UiLoginController initialization(Stage stage) {
+		//IUserDao userDao = new UserDao();
+		//UserService userService = new UserService();
+		LoginController loginController = new LoginController();
+		UiLoginController uiLoginController = new UiLoginController(loginController, stage);
+		return uiLoginController;
 	}
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/passbook/view/UiLogin.fxml"));
-			loader.setControllerFactory(e -> makeUiLoginController(primaryStage));
+			loader.setControllerFactory(e -> initialization(primaryStage));
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);

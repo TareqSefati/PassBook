@@ -11,14 +11,16 @@ public abstract class Database implements IDatabase {
 	public abstract void setup() throws Exception;
 
 	@Override
-	public void connect() {
+	public Connection connect() {
 		try {
 			if(connection == null)
 				connection = DriverManager.getConnection(IDatabase.DB_URL + ";create=true");
+			return connection;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Unable to connect with database. " + e.getMessage());
 			System.out.println("Responsible class is: " + e.getClass());
+			return null;
 		}
 	}
 

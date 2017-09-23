@@ -15,6 +15,10 @@ public class LoginController {
 		this.userService = userService;
 	}
 	
+	public LoginController() {
+		this.userService = new UserService();
+	}
+	
 	//Manages login activity
 	public void login(String username, String password, ActionEvent event) {
     	userService.login(username, password,event);	
@@ -22,10 +26,11 @@ public class LoginController {
 
 	public void dataConnectionClose() {	
 		userService.dataConnectionClose();
+		
 	}
 
-	public void addUser(String username, String password, String email) {
-		userService.addUser(username, password, email);
+	public void addUser(String username, String password, String email, ActionEvent event) {
+		userService.addUser(username, password, email, event);
 	}
 
 	public void registerUser(ActionEvent event) throws IOException {

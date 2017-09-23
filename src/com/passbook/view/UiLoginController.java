@@ -22,7 +22,9 @@ public class UiLoginController {
 	
 	public UiLoginController(LoginController loginController, Stage stage){
 		this.loginController = loginController;
-		stage.setOnCloseRequest(t -> loginController.dataConnectionClose());
+		stage.setOnCloseRequest(t -> {loginController.dataConnectionClose();
+		System.out.println("data connection close from uiLogin Controller.");
+	});
 	}
 	
 	@FXML

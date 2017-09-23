@@ -1,9 +1,11 @@
 package com.passbook.database;
 
+import java.sql.Connection;
+
 public interface IDatabase {
 	
 	public static String DB_URL = "jdbc:derby:passbook.db";
 	
-	public void connect() throws Exception;
+	public Connection connect() throws Exception;
 	public void close() throws Exception;
 }
