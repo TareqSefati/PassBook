@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXTextField;
 import com.passbook.controller.MainPassBookController;
 import com.passbook.model.PassEntity;
+import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,10 +59,13 @@ public class UiMainPassBookController {
 
     @FXML
     void addEntity(ActionEvent event) {
-    	mainPassBookController.showAddEntityWindow();
+    	mainPassBookController.showAddEntityWindow(tableView);
     	//mainPassBookController.dataConnectionClose();
     	//this.mainPassBookController = new MainPassBookController();
-    	tableView.refresh();
+    	//tableView.refresh();
+    	//tableView.getProperties().put(TableViewSkinBase.RECREATE, Boolean.TRUE);
+    	//tableView.setItems(mainPassBookController.getAllEntities(userID));
+    	//tableView.getItems().clear();
     	System.out.println("new entity added. length is: " + mainPassBookController.getAllEntities(userID).toArray().length);
     }
 

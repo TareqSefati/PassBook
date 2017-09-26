@@ -2,16 +2,19 @@ package com.passbook.service;
 
 import java.io.IOException;
 
-import com.passbook.dao.MainPassBookDao;
 import com.passbook.dao.PassEntityDao;
 import com.passbook.model.PassEntity;
+import com.passbook.view.UiAddPassController;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -19,7 +22,10 @@ public class MainPassBookService {
 
 	// private MainPassBookDao mainPassBookDao;
 	private PassEntityDao passEntityDao;
-
+	
+	//we have to make this variable static otherwise it throws NPException.
+	private static TableView<PassEntity> tableView;
+	
 	public MainPassBookService() {
 		// this.mainPassBookDao = new MainPassBookDao();
 		// mainPassBookDao.connect();
@@ -40,9 +46,10 @@ public class MainPassBookService {
 		alert.showAndWait();
 	}
 
-	private void showWindow(String path, String window) throws IOException {
+	private void showWindow(String path, String window, TableView<PassEntity> tv) throws IOException {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
+		loader.setControllerFactory(e-> new UiAddPassController(tv));
 		Pane root = loader.load(getClass().getResource(path).openStream());
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
@@ -52,9 +59,11 @@ public class MainPassBookService {
 		stage.show();
 	}
 
-	public void showAddEntityWindow() {
+	public void showAddEntityWindow(TableView<PassEntity> tv) {
+		//we set static tableview here as soon as we get the value of tableview from this func
+		this.tableView = tv;
 		try {
-			showWindow("/com/passbook/view/UiAddPass.fxml", "Add New Entity");
+			showWindow("/com/passbook/view/UiAddPass.fxml", "Add New Entity", tv);
 		} catch (IOException e) {
 			System.out.println("Unable to open UiAddPass fxml window. " + e.getMessage());
 			e.printStackTrace();
@@ -62,12 +71,12 @@ public class MainPassBookService {
 	}
 
 	public void showEditEntityWindow() {
-		try {
-			showWindow("/com/passbook/view/UiUpdatePass.fxml", "Update Entity");
-		} catch (IOException e) {
-			System.out.println("Unable to open UiUpdatePass fxml window. " + e.getMessage());
-			e.printStackTrace();
-		}
+//		try {
+//			showWindow("/com/passbook/view/UiUpdatePass.fxml", "Update Entity");
+//		} catch (IOException e) {
+//			System.out.println("Unable to open UiUpdatePass fxml window. " + e.getMessage());
+//			e.printStackTrace();
+//		}
 	}
 
 	public void onSearch() {
@@ -85,7 +94,11 @@ public class MainPassBookService {
 		return passEntityDao.findPassEntitiesByUserID(userID);
 	}
 
-	public void addEntity(int userID, String keyWord, String username, String password, String webAddress) {
+	public void addEntity(int userID, String keyWord, String username, String password, String webAddress, TableView<PassEntity> viewtable, ActionEvent event) {
+		//here we get the value of tableview from function.
+		//we can use this function passed value or 
+		// we can use static variable value in this class to update the Main Table View
+		
 		System.out.println("From main book service " + userID);
 		if (keyWord.isEmpty() || username.isEmpty() || password.isEmpty() || webAddress.isEmpty()) {
 			showDialog("Error", "Empty Fields Detected", "All fields must be filled.");
@@ -107,7 +120,15 @@ public class MainPassBookService {
 			System.out.println(passEntity);
 			
 			if(passEntityDao.addPassEntity(passEntity)) {
+				//tableView.getItems().clear();
+				//Using static value to update Main Table View.
+				this.tableView.setItems(passEntityDao.findPassEntitiesByUserID(userID));
 				
+				//using function passed value to update Main Table view
+				//viewtable.setItems(passEntityDao.findPassEntitiesByUserID(userID));
+				
+				Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+				stage.close();
 			}else {
 				showDialog("Something went wrong", "Failed.", "Unable to Add Entity.");
 			}

@@ -4,6 +4,8 @@ import com.passbook.model.PassEntity;
 import com.passbook.service.MainPassBookService;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.scene.control.TableView;
 
 public class MainPassBookController {
 
@@ -18,8 +20,8 @@ public class MainPassBookController {
 		}
 	}
 	
-	public void showAddEntityWindow() {
-		mainPassBookService.showAddEntityWindow();
+	public void showAddEntityWindow(TableView<PassEntity> tv) {
+		mainPassBookService.showAddEntityWindow(tv);
 	}
 
 	public void showEditEntityWindow() {
@@ -41,8 +43,8 @@ public class MainPassBookController {
 		return mainPassBookService.getAllEntities(userID);
 	}
 
-	public void addEntity(String keyWord, String username, String password, String webAddress) {
-		mainPassBookService.addEntity(userID , keyWord, username, password, webAddress);
+	public void addEntity(String keyWord, String username, String password, String webAddress, TableView<PassEntity> tableView, ActionEvent event) {
+		mainPassBookService.addEntity(userID , keyWord, username, password, webAddress, tableView, event);
 	}
 	
 	public void dataConnectionClose() {

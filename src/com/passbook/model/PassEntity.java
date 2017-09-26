@@ -1,65 +1,76 @@
 package com.passbook.model;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class PassEntity {
 
-	private int passEntityID;
+	private final SimpleIntegerProperty passEntityID = new SimpleIntegerProperty();
 	
-	private int userID;
+	private final SimpleIntegerProperty userID = new SimpleIntegerProperty();
 	
-	private String keyWord;
+	private final SimpleStringProperty keyWord = new SimpleStringProperty();
 	
-	private String entityUsername;
+	private final SimpleStringProperty entityUsername = new SimpleStringProperty();
 	
-	private String entityPassword;
+	private final SimpleStringProperty entityPassword = new SimpleStringProperty();
 	
-	private String webAddress;
+	private final SimpleStringProperty webAddress = new SimpleStringProperty();
+	
+//	public PassEntity(int userID, String keyWord, String entityUsername, String entityPassword, String webAddress) {
+//		this.userID = new SimpleIntegerProperty(userID);
+//		this.keyWord = new SimpleStringProperty(keyWord);
+//		this.entityUsername = new SimpleStringProperty(entityUsername);
+//		this.entityPassword = new SimpleStringProperty(entityPassword);
+//		this.webAddress = new SimpleStringProperty(webAddress);
+//	}
 
 	public int getPassEntityID() {
-		return passEntityID;
+		return passEntityID.get();
 	}
 
 	public void setPassEntityID(int passEntityID) {
-		this.passEntityID = passEntityID;
+		this.passEntityID.set(passEntityID);
 	}
 
 	public int getUserID() {
-		return userID;
+		return userID.get();
 	}
 
 	public void setUserID(int userID) {
-		this.userID = userID;
+		this.userID.set(userID);
 	}
 
 	public String getKeyWord() {
-		return keyWord;
+		return keyWord.get();
 	}
 
 	public void setKeyWord(String keyWord) {
-		this.keyWord = keyWord;
+		this.keyWord.set(keyWord);
 	}
 
 	public String getEntityUsername() {
-		return entityUsername;
+		return entityUsername.get();
 	}
 
 	public void setEntityUsername(String entityUsername) {
-		this.entityUsername = entityUsername;
+		this.entityUsername.set(entityUsername);
 	}
 
 	public String getEntityPassword() {
-		return entityPassword;
+		return entityPassword.get();
 	}
 
 	public void setEntityPassword(String entityPassword) {
-		this.entityPassword = entityPassword;
+		this.entityPassword.set(entityPassword);
 	}
 
 	public String getWebAddress() {
-		return webAddress;
+		return webAddress.get();
 	}
 
 	public void setWebAddress(String webAddress) {
-		this.webAddress = webAddress;
+		this.webAddress.set(webAddress);
 	}
 
 	@Override
