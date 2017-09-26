@@ -20,7 +20,9 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#addEntity" text="Add New" />
+                  <MenuItem mnemonicParsing="false" onAction="#editEntity" text="Edit" />
+                  <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -65,10 +67,10 @@
             </HBox>
             <TableView fx:id="tableView" editable="true" prefHeight="330.0" prefWidth="600.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn editable="false" prefWidth="75.0" text="Key Word" />
-                <TableColumn prefWidth="75.0" text="Username" />
-                  <TableColumn prefWidth="75.0" text="Password" />
-                  <TableColumn prefWidth="105.0" text="Web Address" />
+                <TableColumn fx:id="keyWord" editable="false" prefWidth="75.0" text="Key Word" />
+                <TableColumn fx:id="entityUsername" prefWidth="75.0" text="Username" />
+                  <TableColumn fx:id="entityPassword" prefWidth="75.0" text="Password" />
+                  <TableColumn fx:id="webAddress" prefWidth="105.0" text="Web Address" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

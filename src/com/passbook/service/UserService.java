@@ -38,12 +38,12 @@ public class UserService {
 	public UserService(IUserDao iUserDao) {
 		this.iUserDao = iUserDao;
 	}
-	
+
 	public UserService() {
 		this.iUserDao = new UserDao();
 	}
 
-	//Email validator function
+	// Email validator function
 	private boolean emailValidator(String emailStr) {
 		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
 		return matcher.find();
@@ -57,7 +57,7 @@ public class UserService {
 		alert.setContentText(content);
 		alert.showAndWait();
 	}
-	
+
 	public void showDialogSuccess(String title, String text) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(title);
@@ -87,6 +87,7 @@ public class UserService {
 							.load(getClass().getResource("/com/passbook/view/UiMainPassBook.fxml").openStream());
 					UiMainPassBookController controller = (UiMainPassBookController) loader.getController();
 					controller.setUsername(username);
+					controller.setUserID(user.getUserID());
 					Scene scene = new Scene(root);
 					stage.setScene(scene);
 					stage.show();
@@ -115,14 +116,14 @@ public class UserService {
 			showDialog("Error", "Username too long.", "Username must be within 16 characters.");
 		} else if (password.length() > passwordLength) {
 			showDialog("Error", "Password too long.", "Password must be within 16 characters.");
-		} else if(!emailValidator(email) || email.length() > emailLength) {
+		} else if (!emailValidator(email) || email.length() > emailLength) {
 			showDialog("Error", "Invalid Email", "Email must be proper within 60 characters");
 		} else {
 			User user = new User(username, DigestUtils.sha1Hex(password), email, "user", true);
-			if(iUserDao.addUser(user)) {
+			if (iUserDao.addUser(user)) {
 				showDialogSuccess("New User Registration", "New User is Registered Successfully.");
 				((Node) event.getSource()).getScene().getWindow().hide();
-			}else{
+			} else {
 				showDialog("Error", "Registration Failed", "Unable to register new user.");
 			}
 		}
@@ -131,15 +132,15 @@ public class UserService {
 	public void registerUser(ActionEvent event) throws IOException {
 		Stage primaryStage = new Stage();
 		((Node) event.getSource()).getScene().getWindow().hide();
-		Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow(); 
+		Stage st = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
-		
+
 		Parent root = loader.load(getClass().getResource("/com/passbook/view/UiRegister.fxml").openStream());
-		//loader.setController(new UiRegisterController(primaryStage));
+		// loader.setController(new UiRegisterController(primaryStage));
 		loader.setController(new UiRegisterController(primaryStage));
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.setOnHidden(e-> st.show());
+		primaryStage.setOnHidden(e -> st.show());
 		primaryStage.setTitle("Registration Window");
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();

@@ -23,40 +23,43 @@ public class UserDao extends Database implements IUserDao, IDatabase {
 
 	private Connection connection;
 	private QueryRunner queryRunner;
-	
+
 	private static final List<User> EMPTY = new ArrayList<>();
-	
+
 	public UserDao() {
 		try {
-			if(connection == null)
+			if (connection == null)
 				this.connection = DriverManager.getConnection(IDatabase.DB_URL + ";create=true");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		queryRunner = new QueryRunner();
 	}
-	
-	//Create Database and User Table
+
+	// Create Database and User Table
 	@Override
 	public void setup() {
 
 		try {
-			if(connection == null)
+			if (connection == null)
 				connection = DriverManager.getConnection(IDatabase.DB_URL + ";create=true");
 			queryRunner.update(connection,
 					"CREATE TABLE USERS ("
-					+"userID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
-					+"username VARCHAR(60), password VARCHAR(80), email VARCHAR(60),"
-					+"role VARCHAR(15), enabled BOOLEAN, PRIMARY KEY (userID)" + ")"
-					);
+							+ "userID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
+							+ "username VARCHAR(60), password VARCHAR(80), email VARCHAR(60),"
+							+ "role VARCHAR(15), enabled BOOLEAN, PRIMARY KEY (userID)" + ")");
 		} catch (SQLException e) {
-			System.out.println("Creating Table failed. " + e.getMessage());
-			System.out.println("Responsible Class: " + e.getClass());
-			e.printStackTrace();
+			if (e.getSQLState().equals("X0Y32")) {
+				return;
+			} else {
+				System.out.println("Creating Table failed. " + e.getMessage());
+				System.out.println("Responsible Class: " + e.getClass());
+				e.printStackTrace();
+			}
 		}
 	}
 
-	//Getting all users
+	// Getting all users
 	@Override
 	public List<User> getAllUser() {
 		try {
@@ -68,15 +71,19 @@ public class UserDao extends Database implements IUserDao, IDatabase {
 		return EMPTY;
 	}
 
-	//Adding a new user
+	// Adding a new user
 	@Override
 	public boolean addUser(User user) {
-		
+
 		try {
-			queryRunner.insert(connection, "INSERT INTO USERS (username, password, email, role, enabled) VALUES (?,?,?,?,?)",
-					new ScalarHandler<Integer>() , user.getUsername(), user.getPassword(), user.getEmail(), user.getRole(), user.isEnabled());
-//			queryRunner.update(connection, "INSERT INTO USERS (username, password, email, role, enabled) VALUES (?,?,?,?,?)",
-//					user.getUsername(), user.getPassword(), user.getEmail(), user.getRole(), user.isEnabled());
+			queryRunner.insert(connection,
+					"INSERT INTO USERS (username, password, email, role, enabled) VALUES (?,?,?,?,?)",
+					new ScalarHandler<Integer>(), user.getUsername(), user.getPassword(), user.getEmail(),
+					user.getRole(), user.isEnabled());
+			// queryRunner.update(connection, "INSERT INTO USERS (username,
+			// password, email, role, enabled) VALUES (?,?,?,?,?)",
+			// user.getUsername(), user.getPassword(), user.getEmail(),
+			// user.getRole(), user.isEnabled());
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,7 +92,7 @@ public class UserDao extends Database implements IUserDao, IDatabase {
 		return false;
 	}
 
-	//Deleting a user
+	// Deleting a user
 	@Override
 	public boolean deleteUser(User user) {
 		try {
@@ -98,12 +105,14 @@ public class UserDao extends Database implements IUserDao, IDatabase {
 		return false;
 	}
 
-	//Updating a user
+	// Updating a user
 	@Override
 	public boolean updateUser(User user) {
 		try {
-			queryRunner.update(connection, "UPDATE USERS SET username=?, password=?, email=?, role=?, enabled=? WHERE userID=?",
-					user.getUsername(), user.getPassword(), user.getEmail(), user.getRole(), user.isEnabled(), user.getUserID());
+			queryRunner.update(connection,
+					"UPDATE USERS SET username=?, password=?, email=?, role=?, enabled=? WHERE userID=?",
+					user.getUsername(), user.getPassword(), user.getEmail(), user.getRole(), user.isEnabled(),
+					user.getUserID());
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -112,7 +121,7 @@ public class UserDao extends Database implements IUserDao, IDatabase {
 		return false;
 	}
 
-	//Getting a user by ID
+	// Getting a user by ID
 	@Override
 	public User findUserByID(int id) {
 		try {
@@ -125,18 +134,19 @@ public class UserDao extends Database implements IUserDao, IDatabase {
 		return null;
 	}
 
-	//Getting a user by username and password
+	// Getting a user by username and password
 	@Override
 	public User userLogin(String username, String password) {
-		
+
 		try {
 			return queryRunner.query(connection, "SELECT * FROM USERS WHERE username=? AND password=?",
 					new BeanHandler<User>(User.class), username, DigestUtils.sha1Hex(password));
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Unable to find the user with [username:password] = [" + username +":"+ password + "]. " + e.getMessage());
+			System.out.println("Unable to find the user with [username:password] = [" + username + ":" + password
+					+ "]. " + e.getMessage());
 		}
 		return null;
 	}
-	
+
 }
