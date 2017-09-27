@@ -5,36 +5,41 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="350.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="350.0" prefWidth="550.0" style="-fx-background-color: #363B59;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passbook.view.UiUpdatePassController">
    <children>
-      <JFXTextField alignment="CENTER" labelFloat="true" layoutX="75.0" layoutY="30.0" prefHeight="25.0" prefWidth="410.0" promptText="Key Word">
+      <JFXTextField fx:id="keyWord" alignment="CENTER" focusColor="#6d84c9" labelFloat="true" layoutX="47.0" layoutY="30.0" prefHeight="25.0" prefWidth="450.0" promptText="Key Word" style="-fx-text-inner-color: #fff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXTextField alignment="CENTER" labelFloat="true" layoutX="75.0" layoutY="95.0" prefHeight="25.0" prefWidth="410.0" promptText="Username">
+      <JFXTextField fx:id="username" alignment="CENTER" labelFloat="true" layoutX="47.0" layoutY="95.0" prefHeight="25.0" prefWidth="450.0" promptText="Username" style="-fx-text-inner-color: #fff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXTextField alignment="CENTER" labelFloat="true" layoutX="75.0" layoutY="160.0" prefHeight="25.0" prefWidth="410.0" promptText="Password">
+      <JFXTextField fx:id="password" alignment="CENTER" labelFloat="true" layoutX="50.0" layoutY="161.0" prefHeight="25.0" prefWidth="450.0" promptText="Password" style="-fx-text-inner-color: #fff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXTextField alignment="CENTER" labelFloat="true" layoutX="75.0" layoutY="225.0" prefHeight="25.0" prefWidth="410.0" promptText="Web Address">
+      <JFXTextField fx:id="webAddress" alignment="CENTER" labelFloat="true" layoutX="47.0" layoutY="225.0" prefHeight="25.0" prefWidth="450.0" promptText="Web Address" style="-fx-text-inner-color: #fff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXButton buttonType="RAISED" layoutX="335.0" layoutY="278.0" prefHeight="30.0" prefWidth="150.0" ripplerFill="#862020" style="-fx-background-color: #0bdd97;" text="Update Record">
+      <JFXButton buttonType="RAISED" layoutX="384.0" layoutY="278.0" onAction="#updateEntity" prefHeight="30.0" prefWidth="120.0" ripplerFill="#862020" style="-fx-background-color: #58D3F7;" text="Update Record" textFill="#110f0f">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="75.0" layoutY="278.0" prefHeight="30.0" prefWidth="150.0" ripplerFill="#862020" style="-fx-background-color: #0bdd97;" text="Delete Record">
+      <JFXButton buttonType="RAISED" layoutX="238.0" layoutY="278.0" onAction="#deleteEntity" prefHeight="30.0" prefWidth="115.0" ripplerFill="#862020" style="-fx-background-color: #ED5E68;" text="Delete Record" textFill="#110f0f">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="47.0" layoutY="278.0" onAction="#cancel" prefHeight="30.0" prefWidth="75.0" ripplerFill="#862020" style="-fx-background-color: #8388A4;" text="Cancel" textFill="#110f0f">
+         <font>
+            <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
    </children>

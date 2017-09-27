@@ -60,19 +60,21 @@ public class UiMainPassBookController {
     @FXML
     void addEntity(ActionEvent event) {
     	mainPassBookController.showAddEntityWindow(tableView);
-    	//mainPassBookController.dataConnectionClose();
-    	//this.mainPassBookController = new MainPassBookController();
+    	
     	//tableView.refresh();
     	//tableView.getProperties().put(TableViewSkinBase.RECREATE, Boolean.TRUE);
     	//tableView.setItems(mainPassBookController.getAllEntities(userID));
     	//tableView.getItems().clear();
-    	System.out.println("new entity added. length is: " + mainPassBookController.getAllEntities(userID).toArray().length);
+    	//System.out.println("new entity added. length is: " + mainPassBookController.getAllEntities(userID).toArray().length);
     }
 
     @FXML
     void editEntity(ActionEvent event) {
-    	mainPassBookController.showEditEntityWindow();
-    	tableView.refresh();
+    	PassEntity passEntity = tableView.getSelectionModel().getSelectedItem();
+    	System.out.println(passEntity);
+    	
+    	mainPassBookController.showEditEntityWindow(passEntity, tableView);
+    	//tableView.refresh();
     }
 
     @FXML
@@ -95,6 +97,13 @@ public class UiMainPassBookController {
 		entityPassword.setCellValueFactory(new PropertyValueFactory<PassEntity, String>("entityPassword"));
 		webAddress.setCellValueFactory(new PropertyValueFactory<PassEntity, String>("webAddress"));
 		tableView.setItems(mainPassBookController.getAllEntities(userID));
+		
+		tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+		    if (newSelection != null) {
+		    	//tableView.getSelectionModel().clearSelection();
+		    	System.out.println(newSelection);
+		    }
+		});
     }
 
 //	@Override

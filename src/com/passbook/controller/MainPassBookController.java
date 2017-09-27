@@ -24,8 +24,8 @@ public class MainPassBookController {
 		mainPassBookService.showAddEntityWindow(tv);
 	}
 
-	public void showEditEntityWindow() {
-		mainPassBookService.showEditEntityWindow();
+	public void showEditEntityWindow(PassEntity passEntity, TableView<PassEntity> tableView) {
+		mainPassBookService.showEditEntityWindow(passEntity, tableView);
 	}
 
 	public void onSearch() {
@@ -43,12 +43,22 @@ public class MainPassBookController {
 		return mainPassBookService.getAllEntities(userID);
 	}
 
-	public void addEntity(String keyWord, String username, String password, String webAddress, TableView<PassEntity> tableView, ActionEvent event) {
-		mainPassBookService.addEntity(userID , keyWord, username, password, webAddress, tableView, event);
+	public void addEntity(String keyWord, String username, String password, String webAddress, ActionEvent event) {
+		mainPassBookService.addEntity(userID , keyWord, username, password, webAddress, event);
 	}
 	
+	public void updateEntity(int entityID, String keyWord, String username, String password, String webAddress, ActionEvent event) {
+		mainPassBookService.updateEntity(entityID, userID , keyWord, username, password, webAddress, event);
+		
+	}
+
+	public void deleteEntity(int entityID, ActionEvent event) {
+		mainPassBookService.deleteEntity(entityID,userID, event);
+		
+	}
+
 	public void dataConnectionClose() {
 		mainPassBookService.dataConnectionClose();
 	}
-
+	
 }
