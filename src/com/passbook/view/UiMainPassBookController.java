@@ -71,6 +71,7 @@ public class UiMainPassBookController {
 		this.userID = userID;
 		System.out.println("from ui main controller" + this.userID);
 		init();
+		autoSearch();
 	}
 
 	@FXML
@@ -135,6 +136,59 @@ public class UiMainPassBookController {
 				});
 			}
 		}
+	}
+	
+	private void makingClearButton() {
+		clear = new Button();
+		clear.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+		clear.setPrefSize(30, 30);
+		ImageView imageView = new ImageView(new Image("/com/passbook/view/images/erase.png"));
+		imageView.setFitHeight(20);
+		imageView.setFitWidth(20);
+		clear.setGraphic(imageView);
+		clear.setCancelButton(true);
+		hBox.getChildren().add(hBox.getChildren().size() - 1, clear);
+		clear.setTranslateX(clear.getLayoutX() + 5);
+	}
+	
+	private void autoSearch() {
+		searchKey.textProperty().addListener((observable, oldValue, newValue) -> {
+		    System.out.println("textfield changed from " + oldValue + " to " + newValue);
+		    if (!searchKey.getText().isEmpty()) {
+				mainPassBookController.onSearch(searchKey.getText(), tableView);
+				
+				if (clearAdded == false) {
+					clear = new Button();
+					clear.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+					clear.setPrefSize(30, 30);
+					ImageView imageView = new ImageView(new Image("/com/passbook/view/images/erase.png"));
+					imageView.setFitHeight(20);
+					imageView.setFitWidth(20);
+					clear.setGraphic(imageView);
+					clear.setCancelButton(true);
+
+					hBox.getChildren().add(hBox.getChildren().size() - 1, clear);
+					clearAdded = true;
+					clear.setTranslateX(clear.getLayoutX() + 5);
+					
+					clear.setOnAction(new EventHandler<ActionEvent>() {
+
+						@Override
+						public void handle(ActionEvent event) {
+							searchKey.setText("");
+							tableView.setItems(mainPassBookController.getAllEntities(userID));
+							hBox.getChildren().remove(clear);
+							clearAdded = false;
+						}
+					});
+				}
+			}else if(searchKey.getText().isEmpty()) {
+				searchKey.setText("");
+				tableView.setItems(mainPassBookController.getAllEntities(userID));
+				hBox.getChildren().remove(clear);
+				clearAdded = false;
+			}
+		});
 	}
 
 	@FXML
