@@ -27,7 +27,7 @@
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXButton buttonType="RAISED" layoutX="384.0" layoutY="278.0" onAction="#updateEntity" prefHeight="30.0" prefWidth="120.0" ripplerFill="#862020" style="-fx-background-color: #58D3F7;" text="Update Record" textFill="#110f0f">
+      <JFXButton buttonType="RAISED" layoutX="384.0" layoutY="278.0" onAction="#updateEntity" prefHeight="30.0" prefWidth="120.0" ripplerFill="#862020" style="-fx-background-color: #876cc6;" text="Update Record" textFill="#110f0f">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

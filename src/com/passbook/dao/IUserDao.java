@@ -5,7 +5,7 @@ import java.util.List;
 import com.passbook.database.IDatabase;
 import com.passbook.model.User;
 
-public interface IUserDao extends IDatabase {
+public interface IUserDao {
 	
 	public boolean addUser(User user);
 	public boolean deleteUser(User user);

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -16,22 +17,31 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passbook.view.UiMainPassBookController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="PassBook">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#addEntity" text="Add New" />
                   <MenuItem mnemonicParsing="false" onAction="#editEntity" text="Edit" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Update Account" />
+                  <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Database">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" style="-fx-background-color: #ED5E68;" text="Reset PassBook Database" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" style="-fx-background-color: #ED5E68;" text="Reset Users Database" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
+                  <MenuItem mnemonicParsing="false" text="Check for Updates" />
+                  <MenuItem mnemonicParsing="false" text="Privacy Statement" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
@@ -41,27 +51,33 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0">
+            <HBox fx:id="hBox" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0">
                <children>
                   <Label fx:id="username" prefHeight="25.0" prefWidth="180.0">
                      <font>
-                        <Font size="13.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
+                     <padding>
+                        <Insets left="8.0" />
+                     </padding>
                   </Label>
-                  <JFXTextField fx:id="searchKey" alignment="CENTER" prefHeight="25.0" prefWidth="280.0" promptText="Search Keyword">
+                  <JFXTextField fx:id="searchKey" alignment="CENTER" prefHeight="25.0" prefWidth="280.0" promptText="Search By Keyword">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin></JFXTextField>
-                  <JFXButton onAction="#onSearch" prefHeight="29.0" prefWidth="100.0" ripplerFill="#9a1818" style="-fx-background-color: #e3e3e3;" text="Search">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
+                  <JFXButton fx:id="searchBtn" defaultButton="true" onAction="#onSearch" prefHeight="29.0" prefWidth="70.0" ripplerFill="#9a1818" style="-fx-background-color: #e3e3e3;" text="Search">
                      <font>
                         <Font size="13.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </JFXButton>
                </children>
             </HBox>

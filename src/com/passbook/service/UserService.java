@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 
 public class UserService {
 
-	private IUserDao iUserDao;
+	private UserDao userDao;
 
 	private final int usernameLength = 16;
 	private final int passwordLength = 16;
@@ -35,12 +35,13 @@ public class UserService {
 			Pattern.CASE_INSENSITIVE);
 
 	// Initiating userDao instance using this constructor
-	public UserService(IUserDao iUserDao) {
-		this.iUserDao = iUserDao;
+	public UserService(UserDao userDao) {
+		this.userDao = userDao;
 	}
 
 	public UserService() {
-		this.iUserDao = new UserDao();
+		this.userDao = new UserDao();
+		this.userDao.setup();
 	}
 
 	// Email validator function
@@ -75,7 +76,7 @@ public class UserService {
 		} else if (password.length() > passwordLength) {
 			showDialog("Error", "Password is too long", "Passwowrd must be with in 80 character.");
 		} else {
-			User user = iUserDao.userLogin(username, password);
+			User user = userDao.userLogin(username, password);
 
 			if (user != null) {
 				// show uiMainPassbook window
@@ -103,7 +104,7 @@ public class UserService {
 
 	public void dataConnectionClose() {
 		try {
-			iUserDao.close();
+			userDao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -120,7 +121,7 @@ public class UserService {
 			showDialog("Error", "Invalid Email", "Email must be proper within 60 characters");
 		} else {
 			User user = new User(username, DigestUtils.sha1Hex(password), email, "user", true);
-			if (iUserDao.addUser(user)) {
+			if (userDao.addUser(user)) {
 				showDialogSuccess("New User Registration", "New User is Registered Successfully.");
 				((Node) event.getSource()).getScene().getWindow().hide();
 			} else {

@@ -145,15 +145,17 @@ public class PassEntityDao extends Database implements IPassEntityDao, IDatabase
 	}
 
 	@Override
-	public List<PassEntity> findPassEntitiesByKeyWord(String key) {
+	public ObservableList<PassEntity> findPassEntitiesByKeyWord(String key, int userID) {
 		try {
-			return queryRunner.query(connection, "SELECT * FROM PASSENTITIES WHERE keyWord LIKE ? ",
-					new BeanListHandler<PassEntity>(PassEntity.class), "%" + key + "%");
+			ObservableList<PassEntity> list = FXCollections
+					.observableList(queryRunner.query(connection, "SELECT * FROM PASSENTITIES WHERE keyWord LIKE ? AND userID=?",
+							new BeanListHandler<PassEntity>(PassEntity.class), "%" + key + "%", userID));
+			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Unable to get Pass entities of pattren key " + key + ". " + e.getMessage());
 		}
-		return EMPTY;
+		return null;
 	}
 
 }

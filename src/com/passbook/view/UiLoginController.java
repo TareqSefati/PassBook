@@ -7,9 +7,11 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.passbook.controller.LoginController;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Menu;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -24,7 +26,7 @@ public class UiLoginController {
 		this.loginController = loginController;
 		stage.setOnCloseRequest(t -> {loginController.dataConnectionClose();
 		System.out.println("data connection close from uiLogin Controller.");
-	});
+		});
 	}
 	
 	@FXML
@@ -41,7 +43,16 @@ public class UiLoginController {
 
     @FXML
     private JFXButton btnLogin;
+    
+    @FXML
+    private Menu passBook;
 
+    @FXML
+    private Menu help;
+
+    
+    
+    
     //Action Event for Login button pressed in login window
     @FXML
     void login(ActionEvent event) {
@@ -53,6 +64,16 @@ public class UiLoginController {
     void registerNewUser(ActionEvent event) throws IOException {
     	loginController.registerUser(event);
     }
+    
+    @FXML
+    void about(ActionEvent event) {
+    	
+    }
 
-
+    @FXML
+    void quit(ActionEvent event) {
+    	loginController.dataConnectionClose();
+    	Platform.exit();
+    	System.exit(0);
+    }
 }

@@ -1,0 +1,26 @@
+1. apply the updateEntity method and save it to the database --done
+2. apply the deleteEntity method and remove it from database --done
+
+3. In main window & log in window set the menu bar
+
+4. Menu bar name File be replaced by PassBook --done
+
+5. In main window under PassBook (Logout, Update Account)
+
+6. For all window under Help (Check for updates, privacy statement, About PassBook)
+
+7. Future - Adding sound on login and logout.
+
+8. In main window set Database menu --done
+
+9. When double click on entity the a window pop up having entity information and copy option.
+
+10. Make About Fxml page.
+
+11. Searching is complete but how to move back to show all entity in table view.
+
+12. Adding clear button left side in search button and spread and shrink the search button dynamically.
+
+//--now developing css......................
+
+Dark Background and Light Text

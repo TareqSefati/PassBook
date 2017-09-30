@@ -3,28 +3,58 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passbook.view.UiLoginController">
+<AnchorPane id="mainBackground" prefHeight="320.0" prefWidth="470.0" stylesheets="@css/ui_login.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passbook.view.UiLoginController">
    <children>
-      <JFXTextField fx:id="usernameField" alignment="CENTER" labelFloat="true" layoutX="158.0" layoutY="72.0" prefHeight="25.0" prefWidth="245.0" promptText="Username">
+      <MenuBar prefWidth="470.0">
+        <menus>
+          <Menu fx:id="passBook" mnemonicParsing="false" text="PassBook">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit    " />
+            </items>
+          </Menu>
+          <Menu fx:id="help" mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Check for Updates" />
+                  <MenuItem mnemonicParsing="false" text="Privacy Statement" />
+                  <MenuItem mnemonicParsing="false" onAction="#about" text="About PassBook" />
+            </items>
+          </Menu>
+        </menus>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </MenuBar>
+      <JFXTextField fx:id="usernameField" alignment="CENTER" labelFloat="true" layoutX="157.0" layoutY="76.0" prefHeight="25.0" prefWidth="260.0" promptText="Username" style="-fx-text-inner-color: #fff;">
          <font>
-            <Font size="14.0" />
+            <Font size="15.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="passwordField" alignment="CENTER" labelFloat="true" layoutX="158.0" layoutY="147.0" prefHeight="25.0" prefWidth="245.0" promptText="Password">
+      <JFXPasswordField fx:id="passwordField" alignment="CENTER" labelFloat="true" layoutX="157.0" layoutY="151.0" prefHeight="25.0" prefWidth="260.0" promptText="Password" style="-fx-text-inner-color: #fff;">
          <font>
-            <Font size="14.0" />
+            <Font size="15.0" />
          </font>
       </JFXPasswordField>
-      <Hyperlink fx:id="newUser" layoutX="158.0" layoutY="220.0" onAction="#registerNewUser" text="Register As a New User" />
-      <ImageView fx:id="appLogo" fitHeight="100.0" fitWidth="100.0" layoutX="20.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
-      <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="322.0" layoutY="216.0" onAction="#login" prefHeight="28.0" prefWidth="81.0" ripplerFill="#862020" text="Login">
+      <Hyperlink fx:id="newUser" layoutX="155.0" layoutY="221.0" onAction="#registerNewUser" style="-fx-background-color: #312550; -fx-background-radius: 8;" text="Register As a New User" textFill="WHITE">
          <font>
-            <Font size="14.0" />
+            <Font size="15.0" />
+         </font></Hyperlink>
+      <ImageView fx:id="appLogo" fitHeight="100.0" fitWidth="100.0" layoutX="31.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icon.png" />
+         </image></ImageView>
+      <JFXButton fx:id="btnLogin" buttonType="RAISED" defaultButton="true" layoutX="337.0" layoutY="220.0" onAction="#login" prefHeight="28.0" prefWidth="81.0" ripplerFill="#862020" style="-fx-background-color: #876cc6; -fx-background-radius: 8;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
    </children>

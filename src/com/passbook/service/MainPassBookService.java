@@ -2,9 +2,9 @@ package com.passbook.service;
 
 import java.io.IOException;
 
+import com.passbook.Main;
 import com.passbook.dao.PassEntityDao;
 import com.passbook.model.PassEntity;
-import com.passbook.view.UiAddPassController;
 import com.passbook.view.UiUpdatePassController;
 
 import javafx.application.Platform;
@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -115,8 +116,12 @@ public class MainPassBookService {
 		}
 	}
 
-	public void onSearch() {
-		// TODO Auto-generated method stub
+	public void onSearch(int userID, String searchKey, TableView<PassEntity> tableView) {
+		if(this.tableView == null)
+			this.tableView = tableView;
+		
+		//this.tableView.getItems().clear();
+		this.tableView.setItems(passEntityDao.findPassEntitiesByKeyWord(searchKey, userID));
 
 	}
 
@@ -225,6 +230,16 @@ public class MainPassBookService {
 	
 	public void dataConnectionClose() {
 		passEntityDao.close();
+	}
+
+	public void logout(ActionEvent event, MenuBar menuBar) {
+		passEntityDao.close();
+		//Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		Stage stage = (Stage) ((Node) menuBar).getScene().getWindow();
+		stage.close();
+		Stage mainStage = new Stage();
+		Main main = new Main();
+		main.start(mainStage);
 	}
 
 }

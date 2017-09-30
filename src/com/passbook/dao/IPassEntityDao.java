@@ -13,6 +13,6 @@ public interface IPassEntityDao {
 	public List<PassEntity> getAllPassEntity();
 	public PassEntity findPassEntityByID(int passEntityID);
 	public List<PassEntity> findPassEntitiesByUserID(int userID);
-	public List<PassEntity> findPassEntitiesByKeyWord(String key);
+	public List<PassEntity> findPassEntitiesByKeyWord(String key, int userID);
 	
 }

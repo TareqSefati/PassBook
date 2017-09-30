@@ -5,6 +5,7 @@ import com.passbook.service.MainPassBookService;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableView;
 
 public class MainPassBookController {
@@ -28,13 +29,12 @@ public class MainPassBookController {
 		mainPassBookService.showEditEntityWindow(passEntity, tableView);
 	}
 
-	public void onSearch() {
-		mainPassBookService.onSearch();
+	public void onSearch(String searchKey, TableView<PassEntity> tableView) {
+		mainPassBookService.onSearch(userID, searchKey, tableView);
 	}
 
 	public void quitMainWindow() {
 		mainPassBookService.quitMainWindow();
-		
 	}
 
 	public ObservableList<PassEntity> getAllEntities(int userID) {
@@ -59,6 +59,11 @@ public class MainPassBookController {
 
 	public void dataConnectionClose() {
 		mainPassBookService.dataConnectionClose();
+	}
+
+	public void logout(ActionEvent event, MenuBar menuBar) {
+		mainPassBookService.logout(event, menuBar);
+		
 	}
 	
 }
