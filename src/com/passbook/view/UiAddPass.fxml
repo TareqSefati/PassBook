@@ -27,12 +27,12 @@
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXButton buttonType="RAISED" layoutX="300.0" layoutY="303.0" onAction="#addEntity" prefHeight="30.0" prefWidth="180.0" ripplerFill="#862020" style="-fx-background-color: #0bdd97;" text="Add To Book">
+      <JFXButton buttonType="RAISED" defaultButton="true" layoutX="300.0" layoutY="303.0" onAction="#addEntity" prefHeight="30.0" prefWidth="180.0" ripplerFill="#862020" style="-fx-background-color: #0bdd97;" text="Add To Book">
          <font>
             <Font size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="82.0" layoutY="303.0" onAction="#cancel" prefHeight="30.0" prefWidth="180.0" ripplerFill="#862020" style="-fx-background-color: #0bdd97;" text="Cancel">
+      <JFXButton buttonType="RAISED" cancelButton="true" layoutX="82.0" layoutY="303.0" onAction="#cancel" prefHeight="30.0" prefWidth="180.0" ripplerFill="#862020" style="-fx-background-color: #0bdd97;" text="Cancel">
          <font>
             <Font size="14.0" />
          </font>

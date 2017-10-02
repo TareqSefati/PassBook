@@ -27,7 +27,7 @@
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXButton buttonType="RAISED" layoutX="384.0" layoutY="278.0" onAction="#updateEntity" prefHeight="30.0" prefWidth="120.0" ripplerFill="#862020" style="-fx-background-color: #876cc6;" text="Update Record" textFill="#110f0f">
+      <JFXButton buttonType="RAISED" defaultButton="true" layoutX="384.0" layoutY="278.0" onAction="#updateEntity" prefHeight="30.0" prefWidth="120.0" ripplerFill="#862020" style="-fx-background-color: #876cc6;" text="Update Record" textFill="#110f0f">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -37,7 +37,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="47.0" layoutY="278.0" onAction="#cancel" prefHeight="30.0" prefWidth="75.0" ripplerFill="#862020" style="-fx-background-color: #8388A4;" text="Cancel" textFill="#110f0f">
+      <JFXButton buttonType="RAISED" cancelButton="true" layoutX="47.0" layoutY="278.0" onAction="#cancel" prefHeight="30.0" prefWidth="75.0" ripplerFill="#862020" style="-fx-background-color: #8388A4;" text="Cancel" textFill="#110f0f">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

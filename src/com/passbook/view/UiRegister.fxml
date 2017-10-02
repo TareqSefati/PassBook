@@ -24,13 +24,13 @@
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXButton buttonType="RAISED" layoutX="410.0" layoutY="263.0" onAction="#registerUser" prefHeight="28.0" prefWidth="80.0" ripplerFill="#862020" text="Register">
+      <JFXButton buttonType="RAISED" defaultButton="true" layoutX="410.0" layoutY="263.0" onAction="#registerUser" prefHeight="28.0" prefWidth="80.0" ripplerFill="#862020" text="Register">
          <font>
             <Font size="14.0" />
          </font>
       </JFXButton>
       <ImageView fx:id="appLogo" fitHeight="150.0" fitWidth="150.0" layoutX="37.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
-      <JFXButton buttonType="RAISED" layoutX="313.0" layoutY="263.0" onAction="#backToLogin" prefHeight="28.0" prefWidth="80.0" ripplerFill="#862020" text="Back">
+      <JFXButton buttonType="RAISED" cancelButton="true" layoutX="313.0" layoutY="263.0" onAction="#backToLogin" prefHeight="28.0" prefWidth="80.0" ripplerFill="#862020" text="Back">
          <font>
             <Font size="14.0" />
          </font>

@@ -116,7 +116,7 @@ public class UiMainPassBookController {
 				clear.setTranslateX(clear.getLayoutX() + 5);
 				
 				searchKey.textProperty().addListener((observable, oldValue, newValue) -> {
-				    System.out.println("textfield changed from " + oldValue + " to " + newValue);
+				    //System.out.println("textfield changed from " + oldValue + " to " + newValue);
 				    if(searchKey.getText().isEmpty()) {
 				    	searchKey.setText("");
 						tableView.setItems(mainPassBookController.getAllEntities(userID));
@@ -153,7 +153,7 @@ public class UiMainPassBookController {
 	
 	private void autoSearch() {
 		searchKey.textProperty().addListener((observable, oldValue, newValue) -> {
-		    System.out.println("textfield changed from " + oldValue + " to " + newValue);
+		    //System.out.println("textfield changed from " + oldValue + " to " + newValue);
 		    if (!searchKey.getText().isEmpty()) {
 				mainPassBookController.onSearch(searchKey.getText(), tableView);
 				
