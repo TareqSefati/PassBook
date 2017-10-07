@@ -32,9 +32,11 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Database">
             <items>
-              <MenuItem mnemonicParsing="false" style="-fx-background-color: #ED5E68;" text="Reset PassBook Database" />
+              <MenuItem mnemonicParsing="false" onAction="#resetPassBookDatabase" style="-fx-background-color: #ED5E68;" text="Reset PassBook Database" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" style="-fx-background-color: #ED5E68;" text="Reset Users Database" />
+                  <MenuItem mnemonicParsing="false" onAction="#manageUsers" style="-fx-background-color: #ED5E68;" text="Manage Users" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#resetDatabase" style="-fx-background-color: #ED5E68;" text="Reset Database" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

@@ -242,4 +242,19 @@ public class UiMainPassBookController {
 			return row;
 		});
 	}
+	
+    @FXML
+    void resetPassBookDatabase(ActionEvent event) {
+    	mainPassBookController.resetPassBookDatabase();
+    }
+
+    @FXML
+    void resetDatabase(ActionEvent event) {
+    	
+    }
+    
+    @FXML
+    void manageUsers(ActionEvent event) {
+
+    }
 }

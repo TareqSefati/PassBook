@@ -158,4 +158,15 @@ public class PassEntityDao extends Database implements IPassEntityDao, IDatabase
 		return null;
 	}
 
+	@Override
+	public boolean resetPassBookDatabase(int userID) {
+		try {
+			queryRunner.update(connection, "DELETE FROM PASSENTITIES WHERE userID=?",userID);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Unable to Reset Pass Entity Table. " + e.getMessage());
+		}
+		return false;	
+	}
 }

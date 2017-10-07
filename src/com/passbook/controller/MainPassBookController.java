@@ -69,5 +69,9 @@ public class MainPassBookController {
 	public void showCopyWindow(PassEntity passEntity) {
 		mainPassBookService.showCopyWindow(passEntity);
 	}
+
+	public void resetPassBookDatabase() {
+		mainPassBookService.resetPassBookDatabase(userID);
+	}
 	
 }

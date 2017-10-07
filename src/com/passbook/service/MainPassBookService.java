@@ -1,6 +1,7 @@
 package com.passbook.service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import com.passbook.Main;
 import com.passbook.dao.PassEntityDao;
@@ -16,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
@@ -56,6 +58,14 @@ public class MainPassBookService {
 		alert.setHeaderText(null);
 		alert.setContentText(text);
 		alert.showAndWait();
+	}
+	
+	public Optional<ButtonType> showDialogConfirmation(String title, String header, String text) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.setContentText(text);
+		return alert.showAndWait();
 	}
 
 	private void showWindow(String path, String window) throws IOException {
@@ -267,6 +277,16 @@ public class MainPassBookService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	public void resetPassBookDatabase(int userID) {
+		Optional<ButtonType> result = showDialogConfirmation("Reset PassBook", "Are you Sure?",
+				"If you press OK, all of your Pass Entity will be deleted. Operation cannot be rolled back");
+		if(result.get() == ButtonType.OK) {
+			passEntityDao.resetPassBookDatabase(userID);
+			this.tableView.setItems(passEntityDao.findPassEntitiesByUserID(userID));
+			showDialogSuccess("PassBook Reset", "PassBook Reset Successfully.");
+		}
 	}
 
 }

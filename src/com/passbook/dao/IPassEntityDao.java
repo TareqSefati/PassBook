@@ -15,4 +15,6 @@ public interface IPassEntityDao {
 	public List<PassEntity> findPassEntitiesByUserID(int userID);
 	public List<PassEntity> findPassEntitiesByKeyWord(String key, int userID);
 	
+	public boolean resetPassBookDatabase(int userID);
+	
 }
