@@ -65,5 +65,9 @@ public class MainPassBookController {
 		mainPassBookService.logout(event, menuBar);
 		
 	}
+
+	public void showCopyWindow(PassEntity passEntity) {
+		mainPassBookService.showCopyWindow(passEntity);
+	}
 	
 }

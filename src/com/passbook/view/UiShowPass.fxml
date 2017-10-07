@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="350.0" prefWidth="550.0" style="-fx-background-color: #363B59;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passbook.view.UiShowPassController">
+   <children>
+      <VBox alignment="CENTER" layoutX="47.0" layoutY="30.0" spacing="38.0">
+         <children>
+            <JFXTextField fx:id="keyWord" alignment="CENTER" focusColor="#6d84c9" labelFloat="true" prefHeight="25.0" prefWidth="460.0" style="-fx-text-inner-color: #fff;" text="Key Word --">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <HBox>
+               <children>
+                  <JFXTextField fx:id="username" alignment="CENTER" labelFloat="true" prefHeight="25.0" prefWidth="380.0" promptText="Username" style="-fx-text-inner-color: #fff;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton fx:id="btnCopyUsername" buttonType="RAISED" cancelButton="true" onAction="#copyUsername" prefHeight="30.0" prefWidth="70.0" ripplerFill="#862020" style="-fx-background-color: #8388A4;" text="Copy" textFill="#110f0f">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <JFXTextField fx:id="password" alignment="CENTER" labelFloat="true" prefHeight="25.0" prefWidth="380.0" promptText="Password" style="-fx-text-inner-color: #fff;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton fx:id="btnCopyPassword" buttonType="RAISED" cancelButton="true" onAction="#copyPassword" prefHeight="30.0" prefWidth="70.0" ripplerFill="#862020" style="-fx-background-color: #8388A4;" text="Copy" textFill="#110f0f">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <JFXTextField fx:id="webAddress" alignment="CENTER" labelFloat="true" prefHeight="25.0" prefWidth="380.0" promptText="Web Address" style="-fx-text-inner-color: #fff;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton fx:id="btnCopyAddress" buttonType="RAISED" cancelButton="true" onAction="#copyWebAddress" prefHeight="30.0" prefWidth="70.0" ripplerFill="#862020" style="-fx-background-color: #8388A4;" text="Copy" textFill="#110f0f">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <JFXButton buttonType="RAISED" defaultButton="true" onAction="#dismissWindow" prefHeight="30.0" prefWidth="120.0" ripplerFill="#862020" style="-fx-background-color: #876cc6;" text="OK" textFill="#110f0f">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

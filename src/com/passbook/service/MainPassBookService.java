@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.passbook.Main;
 import com.passbook.dao.PassEntityDao;
 import com.passbook.model.PassEntity;
+import com.passbook.view.UiShowPassController;
 import com.passbook.view.UiUpdatePassController;
 
 import javafx.application.Platform;
@@ -240,6 +241,32 @@ public class MainPassBookService {
 		Stage mainStage = new Stage();
 		Main main = new Main();
 		main.start(mainStage);
+	}
+
+	public void showCopyWindow(PassEntity passEntity) {
+		try {
+			Stage stage = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			Pane root = loader.load(getClass().getResource("/com/passbook/view/UiShowPass.fxml").openStream());
+			
+			UiShowPassController uiShowPassController = (UiShowPassController) loader.getController();
+			uiShowPassController.setKeyWord(passEntity.getKeyWord());
+			uiShowPassController.setUsername(passEntity.getEntityUsername());
+			uiShowPassController.setPassword(passEntity.getEntityPassword());
+			uiShowPassController.setWebAddress(passEntity.getWebAddress());
+			
+			Scene scene = new Scene(root);
+			root.requestFocus();
+			stage.setScene(scene);
+			stage.setTitle("PassEntity-- " + passEntity.getKeyWord());
+			stage.setResizable(false);
+			stage.sizeToScene();
+			stage.show();
+		} catch (IOException e) {
+			System.out.println("Unable to open UiShowPass fxml window. " + e.getMessage());
+			e.printStackTrace();
+		}
+		
 	}
 
 }

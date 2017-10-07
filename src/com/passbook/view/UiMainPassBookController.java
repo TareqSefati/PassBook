@@ -4,20 +4,27 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.passbook.controller.MainPassBookController;
 import com.passbook.model.PassEntity;
+import com.sun.glass.events.MouseEvent;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class UiMainPassBookController {
 
@@ -100,7 +107,7 @@ public class UiMainPassBookController {
 	void onSearch(ActionEvent event) {
 		if (!searchKey.getText().isEmpty()) {
 			mainPassBookController.onSearch(searchKey.getText(), tableView);
-			
+
 			if (clearAdded == false) {
 				clear = new Button();
 				clear.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
@@ -114,15 +121,16 @@ public class UiMainPassBookController {
 				hBox.getChildren().add(hBox.getChildren().size() - 1, clear);
 				clearAdded = true;
 				clear.setTranslateX(clear.getLayoutX() + 5);
-				
+
 				searchKey.textProperty().addListener((observable, oldValue, newValue) -> {
-				    //System.out.println("textfield changed from " + oldValue + " to " + newValue);
-				    if(searchKey.getText().isEmpty()) {
-				    	searchKey.setText("");
+					// System.out.println("textfield changed from " + oldValue +
+					// " to " + newValue);
+					if (searchKey.getText().isEmpty()) {
+						searchKey.setText("");
 						tableView.setItems(mainPassBookController.getAllEntities(userID));
 						hBox.getChildren().remove(clear);
 						clearAdded = false;
-				    }
+					}
 				});
 				clear.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -137,7 +145,7 @@ public class UiMainPassBookController {
 			}
 		}
 	}
-	
+
 	private void makingClearButton() {
 		clear = new Button();
 		clear.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
@@ -150,13 +158,14 @@ public class UiMainPassBookController {
 		hBox.getChildren().add(hBox.getChildren().size() - 1, clear);
 		clear.setTranslateX(clear.getLayoutX() + 5);
 	}
-	
+
 	private void autoSearch() {
 		searchKey.textProperty().addListener((observable, oldValue, newValue) -> {
-		    //System.out.println("textfield changed from " + oldValue + " to " + newValue);
-		    if (!searchKey.getText().isEmpty()) {
+			// System.out.println("textfield changed from " + oldValue + " to "
+			// + newValue);
+			if (!searchKey.getText().isEmpty()) {
 				mainPassBookController.onSearch(searchKey.getText(), tableView);
-				
+
 				if (clearAdded == false) {
 					clear = new Button();
 					clear.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
@@ -170,7 +179,7 @@ public class UiMainPassBookController {
 					hBox.getChildren().add(hBox.getChildren().size() - 1, clear);
 					clearAdded = true;
 					clear.setTranslateX(clear.getLayoutX() + 5);
-					
+
 					clear.setOnAction(new EventHandler<ActionEvent>() {
 
 						@Override
@@ -182,7 +191,7 @@ public class UiMainPassBookController {
 						}
 					});
 				}
-			}else if(searchKey.getText().isEmpty()) {
+			} else if (searchKey.getText().isEmpty()) {
 				searchKey.setText("");
 				tableView.setItems(mainPassBookController.getAllEntities(userID));
 				hBox.getChildren().remove(clear);
@@ -217,24 +226,20 @@ public class UiMainPassBookController {
 		tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 			if (newSelection != null) {
 				// tableView.getSelectionModel().clearSelection();
-				System.out.println(newSelection);
+				//System.out.println("this is 2 click demo: " + newSelection);
 			}
 		});
+		
+		//to show copy window for double click activity.
+		tableView.setRowFactory(e -> {
+			TableRow<PassEntity> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+					mainPassBookController.showCopyWindow(row.getItem());
+				}
+			});
+
+			return row;
+		});
 	}
-
-	// @Override
-	// public void initialize(URL location, ResourceBundle resources) {
-	//// keyWord.setCellValueFactory(new PropertyValueFactory<PassEntity,
-	// String>("keyWord"));
-	//// entityUsername.setCellValueFactory(new PropertyValueFactory<PassEntity,
-	// String>("entityUsername"));
-	//// entityPassword.setCellValueFactory(new PropertyValueFactory<PassEntity,
-	// String>("entityPassword"));
-	//// webAddress.setCellValueFactory(new PropertyValueFactory<PassEntity,
-	// String>("webAddress"));
-	// //tableView.setItems(mainPassBookController.getAllEntities(userID));
-	// //System.out.println("from main controller in initializable method" +
-	// this.userID);
-	// }
-
 }
