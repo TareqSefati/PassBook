@@ -2,7 +2,6 @@ package com.passbook.dao;
 
 import java.util.List;
 
-import com.passbook.database.IDatabase;
 import com.passbook.model.User;
 
 public interface IUserDao {

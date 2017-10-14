@@ -1,20 +1,26 @@
 package com.passbook.view;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.passbook.controller.MainPassBookController;
 import com.passbook.model.PassEntity;
-import com.sun.glass.events.MouseEvent;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -23,8 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class UiMainPassBookController {
 
@@ -36,6 +41,14 @@ public class UiMainPassBookController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void showDialog(String title, String header, String content) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+		alert.showAndWait();
 	}
 
 	private int userID;
@@ -218,7 +231,34 @@ public class UiMainPassBookController {
 		keyWord.setCellValueFactory(new PropertyValueFactory<PassEntity, String>("keyWord"));
 		entityUsername.setCellValueFactory(new PropertyValueFactory<PassEntity, String>("entityUsername"));
 		entityPassword.setCellValueFactory(new PropertyValueFactory<PassEntity, String>("entityPassword"));
-		webAddress.setCellValueFactory(new PropertyValueFactory<PassEntity, String>("webAddress"));
+		webAddress.setCellValueFactory(new PropertyValueFactory<>("webAddress"));
+		webAddress.setCellFactory(new Callback<TableColumn<PassEntity,String>, TableCell<PassEntity,String>>() {
+			
+			@Override
+			public TableCell<PassEntity, String> call(TableColumn<PassEntity, String> param) {
+				TableCell<PassEntity, String> cell = new TableCell<PassEntity, String>() {
+					@Override
+		            protected void updateItem(String item, boolean empty) {
+		                Hyperlink link = new Hyperlink(item);
+						setGraphic(link);
+						link.setOnAction(e->{
+							try {
+								Desktop.getDesktop().browse(new URI(link.getText()));
+							} catch (IOException | URISyntaxException e1) {
+								Alert alert = new Alert(AlertType.ERROR);
+								alert.setTitle("Error");
+								alert.setHeaderText("Unable to open this URL Address.");
+								alert.setContentText("Please verify or modify the address. Provide 'http://www' or 'https://www' properly.");
+								alert.showAndWait();
+								e1.printStackTrace();
+							}
+						});
+		            }
+				};
+				return cell;
+			}
+		});
+		
 		tableView.setItems(mainPassBookController.getAllEntities(userID));
 
 		// not necessary now. for future use. to active double clicking
@@ -256,5 +296,21 @@ public class UiMainPassBookController {
     @FXML
     void manageUsers(ActionEvent event) {
 
+    }
+    
+    
+    
+    public static void test() {
+//    	final Hyperlink link = new Hyperlink("hk");
+//        link.setOnAction(new EventHandler<ActionEvent>() {
+//
+//            @Override
+//            public void handle(ActionEvent t) {
+//            	getHostServices().showDocument(link.getText());
+//                //openBrowser(link.getText());
+//            }
+//
+//        });
+//        //listView.getItems().add(link);
     }
 }

@@ -1,9 +1,5 @@
 package com.passbook.service;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 public class PasswordHasher {
 
 //	String hash = null;

@@ -1,14 +1,11 @@
 package com.passbook.service;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import com.passbook.controller.LoginController;
-import com.passbook.dao.IUserDao;
 import com.passbook.dao.UserDao;
 import com.passbook.model.User;
 import com.passbook.view.UiMainPassBookController;
@@ -86,10 +83,12 @@ public class UserService {
 					FXMLLoader loader = new FXMLLoader();
 					Pane root = loader
 							.load(getClass().getResource("/com/passbook/view/UiMainPassBook.fxml").openStream());
+					root.getStylesheets().add(getClass().getResource("/com/passbook/view/css/ui_main_passbook.css").toExternalForm());
 					UiMainPassBookController controller = (UiMainPassBookController) loader.getController();
 					controller.setUsername(username);
 					controller.setUserID(user.getUserID());
 					Scene scene = new Scene(root);
+					stage.setTitle("PassBook");
 					stage.setScene(scene);
 					stage.show();
 				} catch (IOException e) {

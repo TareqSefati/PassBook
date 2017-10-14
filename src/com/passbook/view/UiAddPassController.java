@@ -2,13 +2,10 @@ package com.passbook.view;
 
 import com.jfoenix.controls.JFXTextField;
 import com.passbook.controller.MainPassBookController;
-import com.passbook.model.PassEntity;
-import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 public class UiAddPassController {

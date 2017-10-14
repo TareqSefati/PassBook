@@ -9,7 +9,6 @@ import org.apache.commons.dbutils.QueryRunner;
 import com.passbook.database.Database;
 import com.passbook.database.IDatabase;
 import com.passbook.model.PassEntity;
-import com.passbook.model.User;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

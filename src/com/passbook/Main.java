@@ -1,14 +1,6 @@
 package com.passbook;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.util.password.BasicPasswordEncryptor;
-
 import com.passbook.controller.LoginController;
-import com.passbook.dao.IUserDao;
-import com.passbook.dao.UserDao;
-import com.passbook.model.User;
-import com.passbook.service.UserService;
 import com.passbook.view.UiLoginController;
 
 import javafx.application.Application;
@@ -43,6 +35,10 @@ public class Main extends Application {
 		return uiLoginController;
 	}
 
+	public void test(String link) {
+		getHostServices().showDocument(link);          
+	}
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {

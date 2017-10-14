@@ -8,12 +8,9 @@ import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
-import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.util.password.BasicPasswordEncryptor;
 
 import com.passbook.database.Database;
 import com.passbook.database.IDatabase;

@@ -10,7 +10,6 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
-import org.apache.derby.iapi.services.io.DerbyIOException;
 
 import com.passbook.database.Database;
 import com.passbook.database.IDatabase;

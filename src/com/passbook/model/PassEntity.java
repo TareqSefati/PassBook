@@ -16,6 +16,7 @@ public class PassEntity {
 	private final SimpleStringProperty entityPassword = new SimpleStringProperty();
 	
 	private final SimpleStringProperty webAddress = new SimpleStringProperty();
+	//private Hyperlink webAddress;
 	
 //	public PassEntity(int userID, String keyWord, String entityUsername, String entityPassword, String webAddress) {
 //		this.userID = new SimpleIntegerProperty(userID);
